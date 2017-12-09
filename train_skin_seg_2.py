@@ -137,7 +137,7 @@ def train():
           logging.info('  F_loss   : {}'.format(F_loss_val))
           logging.info('  D_X_loss : {}'.format(D_X_loss_val))
 
-          log.write('{}, {}, {}, {}'.format(G_loss_val, D_Y_loss_val, F_loss_val, D_X_loss_val))
+          log.write('{}, {}, {}, {}\n'.format(G_loss_val, D_Y_loss_val, F_loss_val, D_X_loss_val))
 
         if step % 250 == 0:
           save_path = saver.save(sess, checkpoints_dir + "/model.ckpt", global_step=step)
