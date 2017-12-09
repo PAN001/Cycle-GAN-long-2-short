@@ -4,8 +4,6 @@ import utils
 from reader import Reader
 from discriminator import Discriminator
 from generator import Generator
-import Segmentation.ImageSegmentation
-from Segmentation.ImageSegmentation import SegmentationNN
 
 REAL_LABEL = 0.9
 
