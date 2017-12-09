@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 import logging
 from utils import ImagePool
-from Segmentation.ImageSegmentation import SegmentationNN
+from Segmentation.ImageSegmentation import *
 
 FLAGS = tf.flags.FLAGS
 
