@@ -7,6 +7,7 @@ import os
 import logging
 from utils import ImagePool
 from Segmentation.ImageSegmentation import *
+from Log import *
 
 FLAGS = tf.flags.FLAGS
 
@@ -36,6 +37,8 @@ tf.flags.DEFINE_string('Y', 'data/tfrecords/orange.tfrecords',
 tf.flags.DEFINE_string('load_model', None,
                         'folder of saved model that you wish to continue training (e.g. 20170602-1936), default: None')
 
+os.makedirs("./log", exist_ok=True)
+log = Log("./log/log.out")
 
 def train():
   if FLAGS.load_model is not None:
@@ -134,7 +137,9 @@ def train():
           logging.info('  F_loss   : {}'.format(F_loss_val))
           logging.info('  D_X_loss : {}'.format(D_X_loss_val))
 
-        if step % 500 == 0:
+          log.write('{}, {}, {}, {}'.format(G_loss_val, D_Y_loss_val, F_loss_val, D_X_loss_val))
+
+        if step % 250 == 0:
           save_path = saver.save(sess, checkpoints_dir + "/model.ckpt", global_step=step)
           logging.info("Model saved in file: %s" % save_path)
 
