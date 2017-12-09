@@ -12,6 +12,7 @@ import os
 from tensorflow.python.tools.freeze_graph import freeze_graph
 from model_skin_seg_2 import CycleGAN
 import utils
+from Segmentation.ImageSegmentation import *
 
 FLAGS = tf.flags.FLAGS
 
@@ -28,7 +29,8 @@ def export_graph(model_name, XtoY=True):
   graph = tf.Graph()
 
   with graph.as_default():
-    cycle_gan = CycleGAN(ngf=FLAGS.ngf, norm=FLAGS.norm, image_size=FLAGS.image_size)
+    segmentation = SegmentationNN('combined_model')
+    cycle_gan = CycleGAN(ngf=FLAGS.ngf, norm=FLAGS.norm, image_size=FLAGS.image_size, segmentation = segmentation)
 
     input_image = tf.placeholder(tf.float32, shape=[FLAGS.image_size, FLAGS.image_size, 3], name='input_image')
     cycle_gan.model()
