@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b77924d6-648b-4ec6-b3b6-3cb3e3791c64" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export_graph.py" afterPath="$PROJECT_DIR$/export_graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inference.py" afterPath="$PROJECT_DIR$/inference.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,12 +29,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inference.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inference.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/inference.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="720">
+              <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+              <folding>
+                <element signature="e#283#306#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,20 +68,18 @@
       <file leaf-file-name="train_skin_seg_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_skin_seg_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="68" column="8" lean-forward="true" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="30">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="export_graph.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="export_graph.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/export_graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="658">
+              <caret line="52" column="54" lean-forward="false" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="54" />
               <folding>
                 <element signature="e#407#430#0" expanded="true" />
               </folding>
@@ -145,6 +145,7 @@
       <find>cuda</find>
       <find>device</find>
       <find>gpu</find>
+      <find>pretrained</find>
       <find>model</find>
       <find>session</find>
     </findStrings>
@@ -160,6 +161,7 @@
         <option value="$PROJECT_DIR$/model_skin_seg_2.py" />
         <option value="$PROJECT_DIR$/model_ori.py" />
         <option value="$PROJECT_DIR$/export_graph.py" />
+        <option value="$PROJECT_DIR$/inference.py" />
       </list>
     </option>
   </component>
@@ -379,20 +381,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inference.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-533">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/export_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="52" column="54" lean-forward="false" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="54" />
+          <folding>
+            <element signature="e#407#430#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -409,20 +413,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/train_skin_seg_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="68" column="8" lean-forward="true" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/export_graph.py">
+    <entry file="file://$PROJECT_DIR$/inference.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="720">
+          <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
           <folding>
-            <element signature="e#407#430#0" expanded="true" />
+            <element signature="e#283#306#0" expanded="true" />
           </folding>
         </state>
       </provider>

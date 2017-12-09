@@ -8,8 +8,9 @@ python export_graph.py --model pretrained/apple2orange.pb \
 
 import tensorflow as tf
 import os
-from model import CycleGAN
+from model_skin_seg_2 import CycleGAN
 import utils
+from Segmentation.ImageSegmentation import *
 
 FLAGS = tf.flags.FLAGS
 
