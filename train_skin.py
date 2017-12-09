@@ -115,7 +115,7 @@ def train():
         train_writer.add_summary(summary, step)
         train_writer.flush()
 
-        if step % 100 == 0:
+        if step % 1 == 0:
           logging.info('-----------Step %d:-------------' % step)
           logging.info('  G_loss   : {}'.format(G_loss_val))
           logging.info('  D_Y_loss : {}'.format(D_Y_loss_val))
