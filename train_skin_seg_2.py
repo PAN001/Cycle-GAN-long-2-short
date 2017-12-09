@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from model import CycleGAN
+from model_skin_seg_2 import CycleGAN
 from reader import Reader
 from datetime import datetime
 import os
