@@ -5,9 +5,9 @@ python export_graph.py --model pretrained/apple2orange.pb \
                        --output output_sample.jpg \
                        --image_size 256
 """
-
-import tensorflow as tf
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+import tensorflow as tf
 from model_skin_seg_2 import CycleGAN
 import utils
 from Segmentation.ImageSegmentation import *
