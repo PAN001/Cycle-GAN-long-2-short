@@ -13,18 +13,18 @@ except ImportError:
     from scandir import scandir, walk
 
 #change this when trying to train another model
-kind = 'combined_pants'
+# kind = 'combined_pants'
 
 IMAGE_HEIGHT = 256
 IMAGE_WIDTH = 256
 
 # #change this when trying to train another model
-TO_TRAIN_PATH = '2500_TRAIN/'
-GROUND_TRUTH_PATH = 'legs2500_TRUTH/'
-VALIDATION_PATH = '997_Train/'
+# TO_TRAIN_PATH = '2500_TRAIN/'
+# GROUND_TRUTH_PATH = 'combined2500_TRUTH/'
+# VALIDATION_PATH = '997_Train/'
 
-def conv2d_batch_relu(input, kernel_size, stride, num_filter, scope):
-    with tf.variable_scope(scope):       
+def conv2d_batch_relu(input, kernel_size, stride, num_filter, scope, reuse = True):
+    with tf.variable_scope(scope, reuse = reuse):       
         stride_shape = [1, stride, stride, 1]
         filter_shape = [kernel_size, kernel_size, input.get_shape()[3], num_filter]
 
@@ -38,8 +38,8 @@ def conv2d_batch_relu(input, kernel_size, stride, num_filter, scope):
         print(scope, ' output dim: ', relu.shape)
         return relu
     
-def conv2d_transpose_batch_relu(input, kernel_size, stride, num_filter, output_dim, scope):
-    with tf.variable_scope(scope):       
+def conv2d_transpose_batch_relu(input, kernel_size, stride, num_filter, output_dim, scope, reuse = True):
+    with tf.variable_scope(scope, reuse = reuse):       
         stride_shape = [1, stride, stride, 1]
         shape = input.get_shape().as_list()
         filter_shape = [kernel_size, kernel_size, num_filter, shape[3]]
@@ -73,20 +73,21 @@ class SegmentationNN:
     def __init__(self, scope_name):
         self.num_epoch = 50
         # self.batch_size = 10
-        self.batch_size = 10
+        self.batch_size = 1
         self.scope_name = scope_name
         self.input = tf.placeholder(tf.float32, [self.batch_size, IMAGE_HEIGHT, IMAGE_WIDTH, 3])
         self.label = tf.placeholder(tf.float32, [self.batch_size, IMAGE_HEIGHT, IMAGE_WIDTH, 1])
+        self.reuse = False
         self.output = self.build_model(self.input, scope_name)
-        print(self.output.shape)
+        # print(self.output.shape)
 
-        self.log_step = 100
+        # self.log_step = 100
         
-        self.lr = 1e-4
+        # self.lr = 1e-4
         
-        self.loss = self._loss(self.output, self.label)
-        self.accuracy = self._accuracy(self.output, self.label)
-        self.optimizer = self._optimizer()
+        # self.loss = self._loss(self.output, self.label)
+        # self.accuracy = self._accuracy(self.output, self.label)
+        # self.optimizer = self._optimizer()
         
     def load_data(self, TO_TRAIN_PATH, GROUD_TRUTH_PATH):
         to_train = []
@@ -123,32 +124,61 @@ class SegmentationNN:
 
         
     def build_model(self, input, scope_name):
-        conv1_1 = conv2d_batch_relu(input, 7, 2, 64, 'conv_1_1')
-        conv1_2 = conv2d_batch_relu(conv1_1, 7, 1, 64, 'conv_1_2')
-        max_pool_1 = max_pool(conv1_2, 3, 2)
-        
-        conv1_3 = conv2d_batch_relu(max_pool_1, 7, 2, 64, 'conv_1_3')
-        conv1_4 = conv2d_batch_relu(conv1_3, 7, 1, 64, 'conv_1_4')
-        max_pool_2 = max_pool(conv1_4, 3, 2)
-            
-        conv1_5 = conv2d_batch_relu(max_pool_2, 7, 2, 64, 'conv_1_5')
-        conv1_6 = conv2d_batch_relu(conv1_5, 7, 1, 64, 'conv_1_6')
-        max_pool_3 = max_pool(conv1_6, 3, 2)
-            
-        unsampled_1 = unsample(max_pool_3, [8,8]) + conv1_6
-        conv1 = conv2d_transpose_batch_relu(unsampled_1, 7, 1, 64, 8, 'conv_2_1') 
-        conv2 = conv2d_transpose_batch_relu(conv1, 7, 2, 64, 16, 'conv_2_2')
-            
-        unsampled_2 = unsample(conv2, [32,32]) + conv1_4
-        conv3 = conv2d_transpose_batch_relu(unsampled_2, 7, 1, 64, 32, 'conv_2_3')
-        conv4 = conv2d_transpose_batch_relu(conv3, 7, 2, 64, 64, 'conv_2_4')
-            
-        unsampled_3 = unsample(conv4, [128,128]) + conv1_2
-        conv5 = conv2d_transpose_batch_relu(unsampled_3, 7, 1, 64, 128, 'conv_2_5')
-        conv6 = conv2d_transpose_batch_relu(conv5, 7, 2, 1, 256, 'conv_2_6')
-        
-        return conv6
-    
+    	# with tf.variable_scope(scope_name):
+		   #  conv1_1 = conv2d_batch_relu(input, 7, 2, 64, 'conv_1_1')
+		   #  conv1_2 = conv2d_batch_relu(conv1_1, 7, 1, 64, 'conv_1_2')
+		   #  max_pool_1 = max_pool(conv1_2, 3, 2)
+		        
+		   #  conv1_3 = conv2d_batch_relu(max_pool_1, 7, 2, 64, 'conv_1_3')
+		   #  conv1_4 = conv2d_batch_relu(conv1_3, 7, 1, 64, 'conv_1_4')
+		   #  max_pool_2 = max_pool(conv1_4, 3, 2)
+		            
+		   #  conv1_5 = conv2d_batch_relu(max_pool_2, 7, 2, 64, 'conv_1_5')
+		   #  conv1_6 = conv2d_batch_relu(conv1_5, 7, 1, 64, 'conv_1_6')
+		   #  max_pool_3 = max_pool(conv1_6, 3, 2)
+		            
+		   #  unsampled_1 = unsample(max_pool_3, [8,8]) + conv1_6
+		   #  conv1 = conv2d_transpose_batch_relu(unsampled_1, 7, 1, 64, 8, 'conv_2_1') 
+		   #  conv2 = conv2d_transpose_batch_relu(conv1, 7, 2, 64, 16, 'conv_2_2')
+		            
+		   #  unsampled_2 = unsample(conv2, [32,32]) + conv1_4
+		   #  conv3 = conv2d_transpose_batch_relu(unsampled_2, 7, 1, 64, 32, 'conv_2_3')
+		   #  conv4 = conv2d_transpose_batch_relu(conv3, 7, 2, 64, 64, 'conv_2_4')
+		            
+		   #  unsampled_3 = unsample(conv4, [128,128]) + conv1_2
+		   #  conv5 = conv2d_transpose_batch_relu(unsampled_3, 7, 1, 64, 128, 'conv_2_5')
+		   #  conv6 = conv2d_transpose_batch_relu(conv5, 7, 2, 1, 256, 'conv_2_6')
+
+		   #  return conv6
+	    conv1_1 = conv2d_batch_relu(input, 7, 2, 64, 'conv_1_1', reuse = self.reuse)
+	    conv1_2 = conv2d_batch_relu(conv1_1, 7, 1, 64, 'conv_1_2', reuse = self.reuse)
+	    max_pool_1 = max_pool(conv1_2, 3, 2)
+	        
+	    conv1_3 = conv2d_batch_relu(max_pool_1, 7, 2, 64, 'conv_1_3', reuse = self.reuse)
+	    conv1_4 = conv2d_batch_relu(conv1_3, 7, 1, 64, 'conv_1_4', reuse = self.reuse)
+	    max_pool_2 = max_pool(conv1_4, 3, 2)
+	            
+	    conv1_5 = conv2d_batch_relu(max_pool_2, 7, 2, 64, 'conv_1_5', reuse = self.reuse)
+	    conv1_6 = conv2d_batch_relu(conv1_5, 7, 1, 64, 'conv_1_6', reuse = self.reuse)
+	    max_pool_3 = max_pool(conv1_6, 3, 2)
+	            
+	    unsampled_1 = unsample(max_pool_3, [8,8]) + conv1_6
+	    conv1 = conv2d_transpose_batch_relu(unsampled_1, 7, 1, 64, 8, 'conv_2_1', reuse = self.reuse) 
+	    conv2 = conv2d_transpose_batch_relu(conv1, 7, 2, 64, 16, 'conv_2_2', reuse = self.reuse)
+	            
+	    unsampled_2 = unsample(conv2, [32,32]) + conv1_4
+	    conv3 = conv2d_transpose_batch_relu(unsampled_2, 7, 1, 64, 32, 'conv_2_3', reuse = self.reuse)
+	    conv4 = conv2d_transpose_batch_relu(conv3, 7, 2, 64, 64, 'conv_2_4', reuse = self.reuse)
+	            
+	    unsampled_3 = unsample(conv4, [128,128]) + conv1_2
+	    conv5 = conv2d_transpose_batch_relu(unsampled_3, 7, 1, 64, 128, 'conv_2_5', reuse = self.reuse)
+	    conv6 = conv2d_transpose_batch_relu(conv5, 7, 2, 1, 256, 'conv_2_6', reuse = self.reuse)
+
+	    self.reuse = True
+
+	    return conv6
+
+
     def _loss(self, logits, labels):
         return tf.reduce_mean(tf.squared_difference(logits, labels))
 
@@ -159,7 +189,6 @@ class SegmentationNN:
         return tf.train.AdamOptimizer(learning_rate = self.lr).minimize(self.loss)
         
     def train(self, sess):
-        print('not in scope')
         iteration = 0
         losses = []
         accuracies = []
@@ -198,18 +227,23 @@ class SegmentationNN:
 
     def get_one_result(self, input, sess):
         output = sess.run([self.output], feed_dict = {self.input: input})
+        output = np.reshape(output, [self.batch_size, 256, 256])
+
+        output[output > 0] = 1
+        output[output < 0] = 1
         return output
 
-            
-tf.reset_default_graph()
 
-with tf.Session() as sess:
-    model = SegmentationNN('combined_model')
-    print(GROUND_TRUTH_PATH)
-    sess.run(tf.global_variables_initializer())
-    model.load_data(TO_TRAIN_PATH, GROUND_TRUTH_PATH)
-    model.load_validation(VALIDATION_PATH)
-    model.train(sess)
-    saver = tf.train.Saver()
-    saver.save(sess, "lib/legs.ckpt")
+            
+# tf.reset_default_graph()
+
+# with tf.Session() as sess:
+#     model = SegmentationNN('combined_model')
+#     print(GROUND_TRUTH_PATH)
+#     sess.run(tf.global_variables_initializer())
+#     model.load_data(TO_TRAIN_PATH, GROUND_TRUTH_PATH)
+#     model.load_validation(VALIDATION_PATH)
+#     model.train(sess)
+#     saver = tf.train.Saver()
+#     saver.save(sess, "lib/combined.ckpt")
 
