@@ -81,14 +81,14 @@ class CycleGAN:
     # X -> Y
     fake_y = self.G(x)
     G_gan_loss = self.generator_loss(self.D_Y, fake_y, use_lsgan=self.use_lsgan)
-    G_skin_loss = self.skin_loss(self.G, x, self.covered2)
+    G_skin_loss = self.skin_loss(self.G, x, self.covered2) # True
     G_loss =  G_gan_loss + cycle_loss + G_skin_loss
     D_Y_loss = self.discriminator_loss(self.D_Y, y, self.fake_y, use_lsgan=self.use_lsgan)
 
     # Y -> X
     fake_x = self.F(y)
     F_gan_loss = self.generator_loss(self.D_X, fake_x, use_lsgan=self.use_lsgan)
-    F_skin_loss = self.skin_loss(self.F, y, self.covered1)
+    F_skin_loss = self.skin_loss(self.F, y, self.covered1) # False
     F_loss = F_gan_loss + cycle_loss + F_skin_loss
     D_X_loss = self.discriminator_loss(self.D_X, x, self.fake_x, use_lsgan=self.use_lsgan)
 
@@ -149,9 +149,9 @@ class CycleGAN:
       return tf.no_op(name='optimizers')
 
   def skin_loss(self, F, x, logits):
-    result = F(x)
+    result = F(x) # fake A
     skin = tf.nn.relu(result - self.RGB)
-    skin = tf.divide(skin, skin + self.ones)
+    skin = tf.divide(skin, skin + self.ones) #
 
     if logits is True:
       _logits = tf.nn.relu( - tf.nn.relu(skin))
