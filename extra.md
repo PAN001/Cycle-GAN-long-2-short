@@ -1,5 +1,7 @@
 # Part 1
-The paper tries to use Cycle GAN to translate an image from a source domain X to a target domain Y in the absence of paired examples. Due to the unpaired nature of the training set, the learnt translation does not guarantee that an individual input x and output y are paired up in a meaningful way as there are infinitely many mappings G that will induce the same distribution over $\hat{y}$. Additionally, in practice, it is difficult to optimize the adversarial objective in isolation: standard procedures often lead to the well-known problem of mode collapse, where all input images map to the same output image and the optimization fails to make progress. Due to thse problems, cycle consistent loss is introduced to encourage $F(G(x)) \approx x$ and $G(F(y)) \approx y$.
+The paper tries to use Cycle GAN to translate an image from a source domain X to a target domain Y in the absence of paired examples. Due to the unpaired nature of the training set, the learnt translation does not guarantee that an individual input x and output y are paired up in a meaningful way as there are infinitely many mappings G that will induce the same distribution over $\hat{y}$. Additionally, in practice, it is difficult to optimize the adversarial objective in isolation: standard procedures often lead to the well-known problem of mode collapse, where all input images map to the same output image and the optimization fails to make progress. Due to thse problems, cycle consistent loss is introduced to encourage ![f](http://latex2png.com/output//latex_6e9fdd000f3e545397bf4da82108b5ef.png).
+
+<!-- $F(G(x)) \approx x$ and $G(F(y)) \approx y$. -->
 
 Specifically, for a large-enough network, it can map the same set of input images to any random permutation of images in the target domain, where any of the learned mappings can induce an output distribution that matches the target distribution. Thus, adversarial losses alone cannot guarantee that the learned function can map an individual input xi to a desired output yi. In this case, the cycle-consistent assumption is made to further reduce the space of possible mapping functions. On the other hand, the standard GAN loss is still necessary since it is the key to GANs’ success - the idea of an adversarial loss that forces the generated images to be, in principle, indistinguishable from real images. It is different from the newly introduced cycle loss as it aims at matching the distribution of generated images to the data distribution in the target domain while cycle consistent loss focuses on preventing the learned mappings G and F from contradicting each other.
 
@@ -12,21 +14,21 @@ The idea that a Nash equilibrium occurs when each player has minimal cost seems 
 
 Due to the high computational cost and lack of GPU resources, the model is only trained for 11 epochs, but it is sufficient to see effect. As three plots shown below, the GAN loss, Cycle loss and total loss for two mappings (G and F) are shown below. 
 
-| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/gan_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/gan_loss.png) | 
 |:--:| 
 | Training GAN Loss|
 
-| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/cycle_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/cycle_loss.png) | 
 |:--:| 
 | Training Cycle Loss|
 
-| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/total_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/total_loss.png) | 
 |:--:| 
 | Training Total Loss|
 
 Additionally, ten images from test set are shown below for demonstration of the performance of the model.
 
-| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/img/10pairs.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/10pairs.png) | 
 |:--:| 
 | 10 images from test set|
 
@@ -79,37 +81,41 @@ In order to focus on the leg, rather than the whole image, a segmentation is use
 
 By doing this, it will directly give hints to the discriminator. The Generative Loss Function is updated as followed:
 
-$$ L_{GAN} = E_{y\sim p(y)}[log(D_Y(Seg(Y) * Y))] + E_{x\sim p(x)}[log(1 - D_Y(Seg(X) * F(X)))] $$
+<!-- $$ L_{GAN} = E_{y\sim p(y)}[log(D_Y(Seg(Y) * Y))] + E_{x\sim p(x)}[log(1 - D_Y(Seg(X) * F(X)))] $$ -->
 
-<!-- ![formula](http://latex2png.com/output//latex_21674e9e1cbb0d9e5d9b14268e7b0996.png) -->
+![formula](http://latex2png.com/output//latex_2c8624b8964f640ee731b7019e73468e.png)
 
 ### Add skin loss
 
 A simple skin based loss is added so as to tell the discriminator which way to go when transferring between long pants and short pants. As the formula below shows, we transferring from long pants (denoted as X) to short pants (denoted as Y), the loss function below could give hints to the discriminator to converge towards a directed goal:
 
-$$ L_{skin_X} = |skin_X - logits_X| $$
+<!-- $$ L_{skin_X} = |skin_X - logits_X| $$ -->
 
-<!-- ![f1](http://latex2png.com/output//latex_be455ea4b05e53aa6c5fb88a6d000499.png) -->
+![f1](http://latex2png.com/output//latex_be455ea4b05e53aa6c5fb88a6d000499.png)
 
-$$ skin_X = \frac{S_X}{1+S_X}, S_X = relu(G(X) - origRGB)$$
+<!-- $$ skin_X = \frac{S_X}{1+S_X}, S_X = relu(G(X) - origRGB)$$ -->
 
-$$logits_X = relu(-relu(skin_X))$$
+![f2](http://latex2png.com/output//latex_9a25df9f475a7d2f369620e79142ba2a.png)
+
+<!-- $$logits_X = relu(-relu(skin_X))$$ -->
+
+![f3](http://latex2png.com/output//latex_72432103c6d6a435f1ac29a886405628.png)
 
 ## Experiments and results
 
 Due to the limitation of time and resources, the model is only trained for few epochs. The figure below shows the example results with relatively satisfying appearance from test data. The model tends to have ability of preserving some attributes that are not expected to change and focus on the other attributes that are expected to change.
 
-| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/img/result.png) | 
+|<img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/result.png" width="200">| 
 |:--:| 
 | Training GAN Loss for long2short|
 
-| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/l2s_GAN_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/l2s_GAN_loss.png) | 
 |:--:| 
 | Training GAN Loss for long2short|
 
 # Reference
 
-[1] https://github.com/vanhuyz/CycleGAN-TensorFlow
+https://github.com/vanhuyz/CycleGAN-TensorFlow
 
 https://github.com/soumith/ganhacks
 

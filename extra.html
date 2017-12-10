@@ -1,0 +1,881 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 980px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+body .markdown-body {
+    padding: 45px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+
+pre {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background-color: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body input {
+  font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4078c0;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body .select::-ms-expand {
+  opacity: 0;
+}
+
+.markdown-body .octicon {
+  font: normal normal normal 16px/1 octicons-anchor;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body .anchor {
+  display: inline-block;
+  padding-right: 2px;
+  margin-left: -18px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #000;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h1 .anchor {
+  line-height: 1;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 .anchor {
+  line-height: 1;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h3 .anchor {
+  line-height: 1.2;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h4 .anchor {
+  line-height: 1.2;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h5 .anchor {
+  line-height: 1.1;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body h6 .anchor {
+  line-height: 1.1;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.markdown-body .pl-c {
+  color: #969896;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #0086b3;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #795da3;
+}
+
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+  color: #333;
+}
+
+.markdown-body .pl-ent {
+  color: #63a35c;
+}
+
+.markdown-body .pl-k {
+  color: #a71d5d;
+}
+
+.markdown-body .pl-pds,
+.markdown-body .pl-s,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sra,
+.markdown-body .pl-sr .pl-sre {
+  color: #183691;
+}
+
+.markdown-body .pl-v {
+  color: #ed6a43;
+}
+
+.markdown-body .pl-id {
+  color: #b52a1d;
+}
+
+.markdown-body .pl-ii {
+  background-color: #b52a1d;
+  color: #f8f8f8;
+}
+
+.markdown-body .pl-sr .pl-cce {
+  color: #63a35c;
+  font-weight: bold;
+}
+
+.markdown-body .pl-ml {
+  color: #693a17;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  color: #1d3e81;
+  font-weight: bold;
+}
+
+.markdown-body .pl-mq {
+  color: #008080;
+}
+
+.markdown-body .pl-mi {
+  color: #333;
+  font-style: italic;
+}
+
+.markdown-body .pl-mb {
+  color: #333;
+  font-weight: bold;
+}
+
+.markdown-body .pl-md {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.markdown-body .pl-mi1 {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.markdown-body .pl-mdr {
+  color: #795da3;
+  font-weight: bold;
+}
+
+.markdown-body .pl-mo {
+  color: #1d3e81;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb;
+}
+
+.markdown-body .plan-price-unit {
+  color: #767676;
+  font-weight: normal;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 0.35em 0.25em -1.6em;
+  vertical-align: middle;
+}
+
+.markdown-body .plan-choice {
+  padding: 15px;
+  padding-left: 40px;
+  display: block;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  font-weight: normal;
+  background-color: #fafafa;
+}
+
+.markdown-body .plan-choice.open {
+  background-color: #fff;
+}
+
+.markdown-body .plan-choice.open .plan-choice-seat-breakdown {
+  display: block;
+}
+
+.markdown-body .plan-choice-free {
+  border-radius: 3px 3px 0 0;
+}
+
+.markdown-body .plan-choice-paid {
+  border-radius: 0 0 3px 3px;
+  border-top: 0;
+  margin-bottom: 20px;
+}
+
+.markdown-body .plan-choice-radio {
+  position: absolute;
+  left: 15px;
+  top: 18px;
+}
+
+.markdown-body .plan-choice-exp {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.markdown-body .plan-choice-seat-breakdown {
+  margin-top: 10px;
+  display: none;
+}
+
+.markdown-body :checked+.radio-label {
+  z-index: 1;
+  position: relative;
+  border-color: #4078c0;
+}
+</style><title>extra</title></head><body><article class="markdown-body"><h1>
+<a id="user-content-part-1" class="anchor" href="#part-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Part 1</h1>
+<p>The paper tries to use Cycle GAN to translate an image from a source domain X to a target domain Y in the absence of paired examples. Due to the unpaired nature of the training set, the learnt translation does not guarantee that an individual input x and output y are paired up in a meaningful way as there are infinitely many mappings G that will induce the same distribution over $\hat{y}$. Additionally, in practice, it is difficult to optimize the adversarial objective in isolation: standard procedures often lead to the well-known problem of mode collapse, where all input images map to the same output image and the optimization fails to make progress. Due to thse problems, cycle consistent loss is introduced to encourage <a href="https://camo.githubusercontent.com/bf8abde88cc7a56789327610107d7004f4574466/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f36653966646430303066336535343533393762663464613832313038623565662e706e67" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/bf8abde88cc7a56789327610107d7004f4574466/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f36653966646430303066336535343533393762663464613832313038623565662e706e67" alt="f" data-canonical-src="http://latex2png.com/output//latex_6e9fdd000f3e545397bf4da82108b5ef.png" style="max-width:100%;"></a>.</p>
+
+<p>Specifically, for a large-enough network, it can map the same set of input images to any random permutation of images in the target domain, where any of the learned mappings can induce an output distribution that matches the target distribution. Thus, adversarial losses alone cannot guarantee that the learned function can map an individual input xi to a desired output yi. In this case, the cycle-consistent assumption is made to further reduce the space of possible mapping functions. On the other hand, the standard GAN loss is still necessary since it is the key to GANs’ success - the idea of an adversarial loss that forces the generated images to be, in principle, indistinguishable from real images. It is different from the newly introduced cycle loss as it aims at matching the distribution of generated images to the data distribution in the target domain while cycle consistent loss focuses on preventing the learned mappings G and F from contradicting each other.</p>
+<h1>
+<a id="user-content-part-2" class="anchor" href="#part-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Part 2</h1>
+<p>Training GANs consists in finding a Nash equilibrium to a two-player non-cooperative game. Each player (discriminator and generator) wishes to minimize its own cost function. A Nash equilibirum is a point (θ(D), θ(G)) such that J(D) is at a minimum with respect to θ(D) and J(G) is at a minimum with respect to θ(G). Unfortunately, finding Nash equilibria is a very difficult problem, and thus GAN is notorious for difficult to train.</p>
+<p>The idea that a Nash equilibrium occurs when each player has minimal cost seems to intuitively motivate the idea of using traditional gradient-based minimization techniques to minimize each player’s cost simultaneously. Unfortunately, a modification to θ(D) that reduces J(D) can increase J(G), and a modification to θ(G) that reduces J(G) can increase J(D). Gradient descent thus fails to converge for many games. Many existent approaches to GAN training have thus applied gradient descent on each player’s cost simultaneously, despite the lack of guarantee that this procedure will converge.</p>
+<p>Due to the high computational cost and lack of GPU resources, the model is only trained for 11 epochs, but it is sufficient to see effect. As three plots shown below, the GAN loss, Cycle loss and total loss for two mappings (G and F) are shown below.</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/gan_loss.png" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/gan_loss.png" alt="All models: Loss vs. Batch" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Training GAN Loss</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/cycle_loss.png" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/cycle_loss.png" alt="All models: Loss vs. Batch" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Training Cycle Loss</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/total_loss.png" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/total_loss.png" alt="All models: Loss vs. Batch" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Training Total Loss</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, ten images from test set are shown below for demonstration of the performance of the model.</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/10pairs.png" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/10pairs.png" alt="All models: Loss vs. Batch" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">10 images from test set</td>
+</tr>
+</tbody>
+</table>
+<p>As expected, the change of loss is not stable and it seems that the two models have not started to converge at all.</p>
+<p>Based on emperical study, there are a number of popular tricks for training the GAN:</p>
+<ol>
+<li>Normalize the inputs</li>
+</ol>
+<ul>
+<li>normalize the images between -1 and 1</li>
+<li>use Tanh as the last layer of the generator output</li>
+</ul>
+<ol start="2">
+<li>BatchNorm</li>
+</ol>
+<ul>
+<li>construct different mini-batches for real and fake, i.e. each mini-batch needs to contain only all real images or all generated images</li>
+<li>when batchnorm is not an option use instance normalization (for each sample, subtract mean and divide by standard deviation).</li>
+</ul>
+<ol start="3">
+<li>Avoid Sparse Gradients: ReLU, MaxPool</li>
+</ol>
+<ul>
+<li>LeakyReLU is a good choise</li>
+<li>for Downsampling, use: Average Pooling, Conv2d + stride</li>
+<li>for Upsampling, use: PixelShuffle, ConvTranspose2d + stride</li>
+</ul>
+<ol start="4">
+<li>Use the ADAM Optimizer</li>
+</ol>
+<ul>
+<li>use SGD for discriminator and ADAM for generator</li>
+</ul>
+<ol start="5">
+<li>Add noise to inputs, decay over time</li>
+</ol>
+<ul>
+<li>add some artificial noise to inputs to D</li>
+<li>add gaussian noise to every layer of generator</li>
+</ul>
+<p>Due to lack of computational cost, it impossible for me to test all these ideas and tricks. I only experimented with changing the optimizer of discriminator from Adam to SGD. However, it is hardly to see any obvious improvement on the loss curve within limited epochs. It is likely that it needs more time to see effect.</p>
+<h1>
+<a id="user-content-part3" class="anchor" href="#part3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Part3</h1>
+<p>I would like to use GANs to detect the clothes of the person in a picture, and change texture and color of the clothes. In the process of clothes changes, it is expected that the hair and the skin of the person is not significantly changed.</p>
+<h2>
+<a id="user-content-data" class="anchor" href="#data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data</h2>
+<p>The dataset is the In Shop Clothes Retrieval Benchmark by Deep Fashion from CUHK. The whole dataset contains 50000 images. For the purpose of testing the idea fast, only 1000 thousand images are selected and carefully divided into two groups - A: persons with long pants, B: persons with short pants.</p>
+<h2>
+<a id="user-content-architecture" class="anchor" href="#architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture</h2>
+<h3>
+<a id="user-content-original-cycle-gan" class="anchor" href="#original-cycle-gan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Original Cycle-GAN</h3>
+<p>Original Cycle-GAN from the paper is directly used. After training x epochs, the result is shown in the figure below. The result is far from satisfying. This is expected as the different between two training groups (i.e. long pants and short pants) are less obvious and easy to capture than those successful applications such as horse2zebra.</p>
+<h3>
+<a id="user-content-add-segmentation" class="anchor" href="#add-segmentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add segmentation</h3>
+<p>In order to focus on the leg, rather than the whole image, a segmentation is used to highlight the leg of the person in the image. Specifically, an encoding-decoding based segmentation network [1] is used here to give 0 values to the leg and. A segmentation example is shown below.</p>
+<p>By doing this, it will directly give hints to the discriminator. The Generative Loss Function is updated as followed:</p>
+
+<p><a href="https://camo.githubusercontent.com/0ae808779f73f3d0c49bd558c0d3617bf65484fc/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f32633836323462383936346636343065653733316237303139653733343638652e706e67" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/0ae808779f73f3d0c49bd558c0d3617bf65484fc/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f32633836323462383936346636343065653733316237303139653733343638652e706e67" alt="formula" data-canonical-src="http://latex2png.com/output//latex_2c8624b8964f640ee731b7019e73468e.png" style="max-width:100%;"></a></p>
+<h3>
+<a id="user-content-add-skin-loss" class="anchor" href="#add-skin-loss" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add skin loss</h3>
+<p>A simple skin based loss is added so as to tell the discriminator which way to go when transferring between long pants and short pants. As the formula below shows, we transferring from long pants (denoted as X) to short pants (denoted as Y), the loss function below could give hints to the discriminator to converge towards a directed goal:</p>
+
+<p><a href="https://camo.githubusercontent.com/c5b3da44b23810e62cb127864ad81843027af26a/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f62653435356561346230356535336161366335666238386136643030303439392e706e67" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/c5b3da44b23810e62cb127864ad81843027af26a/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f62653435356561346230356535336161366335666238386136643030303439392e706e67" alt="f1" data-canonical-src="http://latex2png.com/output//latex_be455ea4b05e53aa6c5fb88a6d000499.png" style="max-width:100%;"></a></p>
+
+<p><a href="https://camo.githubusercontent.com/5dbb92713a4260b965070a7497c2d29a1e8914dd/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f39613235646639663437356137643266333639363230653739313432626132612e706e67" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/5dbb92713a4260b965070a7497c2d29a1e8914dd/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f39613235646639663437356137643266333639363230653739313432626132612e706e67" alt="f2" data-canonical-src="http://latex2png.com/output//latex_9a25df9f475a7d2f369620e79142ba2a.png" style="max-width:100%;"></a></p>
+
+<p><a href="https://camo.githubusercontent.com/f8e367926df9f49c2ae0f3ede19820707521ab0c/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f37323433323130336336643661343335663161633239613838363430353632382e706e67" target="_blank" rel="nofollow"><img src="https://camo.githubusercontent.com/f8e367926df9f49c2ae0f3ede19820707521ab0c/687474703a2f2f6c6174657832706e672e636f6d2f6f75747075742f2f6c617465785f37323433323130336336643661343335663161633239613838363430353632382e706e67" alt="f3" data-canonical-src="http://latex2png.com/output//latex_72432103c6d6a435f1ac29a886405628.png" style="max-width:100%;"></a></p>
+<h2>
+<a id="user-content-experiments-and-results" class="anchor" href="#experiments-and-results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Experiments and results</h2>
+<p>Due to the limitation of time and resources, the model is only trained for few epochs. The figure below shows the example results with relatively satisfying appearance from test data. The model tends to have ability of preserving some attributes that are not expected to change and focus on the other attributes that are expected to change.</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/result.png" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/result.png" width="200" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Training GAN Loss for long2short</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/l2s_GAN_loss.png" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/l2s_GAN_loss.png" alt="All models: Loss vs. Batch" style="max-width:100%;"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Training GAN Loss for long2short</td>
+</tr>
+</tbody>
+</table>
+<h1>
+<a id="user-content-reference" class="anchor" href="#reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reference</h1>
+<p><a href="https://github.com/vanhuyz/CycleGAN-TensorFlow">https://github.com/vanhuyz/CycleGAN-TensorFlow</a></p>
+<p><a href="https://github.com/soumith/ganhacks">https://github.com/soumith/ganhacks</a></p>
+<p><a href="https://github.com/shekkizh/neuralnetworks.thought-experiments">https://github.com/shekkizh/neuralnetworks.thought-experiments</a></p>
+<p><a href="https://github.com/soumith/ganhacks">https://github.com/soumith/ganhacks</a></p>
+<p><a href="https://github.com/lemondan/HumanParsing-Dataset">https://github.com/lemondan/HumanParsing-Dataset</a></p>
+</article></body></html><script async>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
