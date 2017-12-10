@@ -12,21 +12,21 @@ The idea that a Nash equilibrium occurs when each player has minimal cost seems 
 
 Due to the high computational cost and lack of GPU resources, the model is only trained for 11 epochs, but it is sufficient to see effect. As three plots shown below, the GAN loss, Cycle loss and total loss for two mappings (G and F) are shown below. 
 
-| ![All models: Loss vs. Batch](./plots/gan_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/gan_loss.png) | 
 |:--:| 
 | Training GAN Loss|
 
-| ![All models: Loss vs. Batch](./plots/cycle_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/cycle_loss.png) | 
 |:--:| 
 | Training Cycle Loss|
 
-| ![All models: Loss vs. Batch](./plots/total_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/total_loss.png) | 
 |:--:| 
 | Training Total Loss|
 
 Additionally, ten images from test set are shown below for demonstration of the performance of the model.
 
-| ![All models: Loss vs. Batch](./img/10pairs.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/img/10pairs.png) | 
 |:--:| 
 | 10 images from test set|
 
@@ -52,16 +52,14 @@ Based on emperical study, there are a number of popular tricks for training the 
 
 4. Use the ADAM Optimizer
 
-- Use SGD for discriminator and ADAM for generator
+- use SGD for discriminator and ADAM for generator
 
 5. Add noise to inputs, decay over time
 
-- add some artificial noise to inputs to D (Arjovsky et. al., Huszar, 2016)
-http://www.inference.vc/instance-noise-a-trick-for-stabilising-gan-training/
-https://openreview.net/forum?id=Hk4_qw5xe
-- add gaussian noise to every layer of generator (Zhao et. al. EBGAN)
+- add some artificial noise to inputs to D
+- add gaussian noise to every layer of generator
 
-Due to lack of computational cost, it impossible for me to test all these ideas and tricks. 
+Due to lack of computational cost, it impossible for me to test all these ideas and tricks. I only experimented with changing the optimizer of discriminator from Adam to SGD. However, it is hardly to see any obvious improvement on the loss curve within limited epochs. It is likely that it needs more time to see effect.
 
 # Part3
 
@@ -101,11 +99,11 @@ $$logits_X = relu(-relu(skin_X))$$
 
 Due to the limitation of time and resources, the model is only trained for few epochs. The figure below shows the example results with relatively satisfying appearance from test data. The model tends to have ability of preserving some attributes that are not expected to change and focus on the other attributes that are expected to change.
 
-| ![All models: Loss vs. Batch](./img/.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/img/result.png) | 
 |:--:| 
 | Training GAN Loss for long2short|
 
-| ![All models: Loss vs. Batch](./plots/l2s_GAN_loss.png) | 
+| ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-Shorts-2-Leggings/master/plots/l2s_GAN_loss.png) | 
 |:--:| 
 | Training GAN Loss for long2short|
 
