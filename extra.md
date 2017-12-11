@@ -52,7 +52,9 @@ Based on emperical study, there are a number of popular tricks for training the 
     + add some artificial noise to inputs to D
     + add gaussian noise to every layer of generator
 
-Due to lack of computational cost, it impossible for me to test all these ideas and tricks. I only experimented with changing the optimizer of discriminator from Adam to SGD. However, it is hardly to see any obvious improvement on the loss curve within limited epochs. It is likely that it needs more time to see effect.
+Due to high computational cost, it impossible for me to test all these ideas and tricks. I have experimented with several tricks including changing the optimizer of discriminator from Adam to SGD, adding dropout in training phase, and applying batch normalization. Particularly, batch normalization is calculated using the statistics of the test batch, rather than aggregated statistics of the training batch. This approach to batch normalization, when the batch size is set to 1, has been termed instance normalization and has been demonstrated to be effective at image generation tasks.
+
+However, due to lack of GPUs, the model is only trained for few epochs, so it is hardly to see any obvious improvement on the loss curve within limited epochs. It is likely that it needs more time to see effects.
 
 # Part3
 
@@ -64,7 +66,11 @@ The dataset is the In Shop Clothes Retrieval Benchmark by Deep Fashion from CUHK
 
 ## Architecture
 ### Original Cycle-GAN
-Original Cycle-GAN from the paper is directly used. After training x epochs, the result is shown in the figure below. The result is far from satisfying. This is expected as the different between two training groups (i.e. long pants and short pants) are less obvious and easy to capture than those successful applications such as horse2zebra. 
+Original Cycle-GAN from the paper is directly used. After training several epochs, the result is shown in the figure below. The result is far from satisfying. This is expected as the different between two training groups (i.e. long pants and short pants) are less obvious and easy to capture than those successful applications such as horse2zebra. 
+
+|<img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/2048_out.png" width="200">| 
+|:--:| 
+| Training GAN Loss for short2long|
 
 ### Add segmentation
 In order to focus on the leg, rather than the whole image, a segmentation is used to highlight the leg of the person in the image. Specifically, an encoding-decoding based segmentation network [1] is used here to give 0 values to the leg and. A segmentation example is shown below.
