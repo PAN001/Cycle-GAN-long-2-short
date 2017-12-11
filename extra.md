@@ -66,14 +66,14 @@ The dataset is the In Shop Clothes Retrieval Benchmark by Deep Fashion from CUHK
 
 ## Architecture
 ### Original Cycle-GAN
-Original Cycle-GAN from the paper is directly used. After training several epochs, the result is shown in the figure below. The result is far from satisfying. This is expected as the different between two training groups (i.e. long pants and short pants) are less obvious and easy to capture than those successful applications such as horse2zebra. 
+Original Cycle-GAN from the paper is directly used. After training several epochs, the result is shown in the figure below. The result is far from satisfying. This is expected as the different between two training groups (i.e. long pants and short pants) are less obvious and much more difficult to capture than those successful applications such as horse2zebra. 
 
-|<img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/2048_out.png" width="200">| 
+|<img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/2048_out.jpg" width="200">| 
 |:--:| 
 | Training GAN Loss for short2long|
 
 ### Add segmentation
-In order to focus on the leg, rather than the whole image, a segmentation is used to highlight the leg of the person in the image. Specifically, an encoding-decoding based segmentation network [1] is used here to give 0 values to the leg and. A segmentation example is shown below.
+In order to focus on the leg, rather than the whole image, a segmentation is used to highlight the leg of the person in the image. Specifically, an encoding-decoding based segmentation network is used here to give 0 values to the leg and. A segmentation example is shown below.
 
 
 By doing this, it will directly give hints to the discriminator. The Generative Loss Function is updated as followed:
@@ -104,7 +104,7 @@ Due to the limitation of time and resources, the model is only trained for few e
 
 |<img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/result.png" width="200">| 
 |:--:| 
-| Training GAN Loss for short2long|
+| Sample result images|
 
 | ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/l2s_GAN_loss.png) | 
 |:--:| 
