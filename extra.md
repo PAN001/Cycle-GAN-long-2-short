@@ -37,35 +37,26 @@ As expected, the change of loss is not stable and it seems that the two models h
 Based on emperical study, there are a number of popular tricks for training the GAN:
 
 1. Normalize the inputs
-
-- normalize the images between -1 and 1
-- use Tanh as the last layer of the generator output
-
+    + normalize the images between -1 and 1
+    + use Tanh as the last layer of the generator output
 2. BatchNorm
-
-- construct different mini-batches for real and fake, i.e. each mini-batch needs to contain only all real images or all generated images
-- when batchnorm is not an option use instance normalization (for each sample, subtract mean and divide by standard deviation).
-
+    + construct different mini-batches for real and fake, i.e. each mini-batch needs to contain only all real images or all generated images
+    + when batchnorm is not an option use instance normalization (for each sample, subtract mean and divide by standard deviation)
 3. Avoid Sparse Gradients: ReLU, MaxPool
-
-- LeakyReLU is a good choise
-- for Downsampling, use: Average Pooling, Conv2d + stride
-- for Upsampling, use: PixelShuffle, ConvTranspose2d + stride
-
+    + LeakyReLU is a good choise
+    + for Downsampling, use: Average Pooling, Conv2d + stride
+    + for Upsampling, use: PixelShuffle, ConvTranspose2d + stride
 4. Use the ADAM Optimizer
-
-- use SGD for discriminator and ADAM for generator
-
+    + use SGD for discriminator and ADAM for generator
 5. Add noise to inputs, decay over time
-
-- add some artificial noise to inputs to D
-- add gaussian noise to every layer of generator
+    + add some artificial noise to inputs to D
+    + add gaussian noise to every layer of generator
 
 Due to lack of computational cost, it impossible for me to test all these ideas and tricks. I only experimented with changing the optimizer of discriminator from Adam to SGD. However, it is hardly to see any obvious improvement on the loss curve within limited epochs. It is likely that it needs more time to see effect.
 
 # Part3
 
-I would like to use GANs to detect the clothes of the person in a picture, and change texture and color of the clothes. In the process of clothes changes, it is expected that the hair and the skin of the person is not significantly changed.
+I would like to use GANs to detect the clothes of the person in a picture, and change texture and color of the clothes. In the process of clothes changes, it is expected that the hair and the skin of the person is not significantly changed. In order to fast test the idea, the task is further narrowed down to changing a person with short pants to long pants - short2long.
 
 ## Data
 
@@ -107,11 +98,11 @@ Due to the limitation of time and resources, the model is only trained for few e
 
 |<img src="https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/img/result.png" width="200">| 
 |:--:| 
-| Training GAN Loss for long2short|
+| Training GAN Loss for short2long|
 
 | ![All models: Loss vs. Batch](https://raw.githubusercontent.com/PAN001/Cycle-GAN-long-2-short/master/plots/l2s_GAN_loss.png) | 
 |:--:| 
-| Training GAN Loss for long2short|
+| Training GAN Loss for short2long|
 
 # Reference
 
@@ -120,6 +111,8 @@ https://github.com/vanhuyz/CycleGAN-TensorFlow
 https://github.com/soumith/ganhacks
 
 https://github.com/shekkizh/neuralnetworks.thought-experiments
+
+https://github.com/CSCI599-Lim-Squad
 
 https://github.com/soumith/ganhacks
 
