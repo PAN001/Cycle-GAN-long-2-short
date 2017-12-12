@@ -73,7 +73,14 @@ Original Cycle-GAN from the paper is directly used. After training several epoch
 | Training GAN Loss for short2long|
 
 ### Add segmentation
-In order to focus on the leg, rather than the whole image, a segmentation is used to highlight the leg of the person in the image. Specifically, an encoding-decoding based segmentation network is used here to give 0 values to the leg and. A segmentation example is shown below.
+
+Due to the limitation of the original model, I decided to make the model conditional so I can control which aspects of transformations are applied by conditioning on additional input variables. Specifically, I want the model focus on the leg, rather than the whole image. Motivated by this, a segmentation is used to highlight the leg of the person in the image. 
+
+An encoding-decoding based segmentation network is used here to give 0 values to the leg and. Specifically, the encoder part has three similar modules, each is comprised of convolution layer with stride two followed by convolutution layer with stride one and no-overlapping max_pool with kernel two. The decoder part then mirrors the encoder part (i.e. coutner-part). The architecture is shown below.
+
+ ![f1](http://latex2png.com/output//latex_be455ea4b05e53aa6c5fb88a6d000499.png)
+
+ A segmentation example is shown below.
 
 
 By doing this, it will directly give hints to the discriminator. The Generative Loss Function is updated as followed:
@@ -110,6 +117,8 @@ Due to the limitation of time and resources, the model is only trained for few e
 |:--:| 
 | Training GAN Loss for short2long|
 
+To some extent, this result is satisfying. The focus of change has been made onto the leg part, although overall image quality is a little bit affected. This indicates that the idea works - by making the model conditional transformations are applied to specified part of the image by conditioning on additional input variables. Additionally, by introducing other losses with indication effect, it is able to teach the model, specifically discriminator, to envolve better.
+
 # Reference
 
 https://github.com/vanhuyz/CycleGAN-TensorFlow
@@ -119,8 +128,6 @@ https://github.com/soumith/ganhacks
 https://github.com/shekkizh/neuralnetworks.thought-experiments
 
 https://github.com/CSCI599-Lim-Squad
-
-https://github.com/soumith/ganhacks
 
 https://github.com/lemondan/HumanParsing-Dataset
 
